@@ -24,10 +24,10 @@ class App extends Component {
 
 
   fetchChampions = async () => {
-    let ddragonGetImageUrl = 'https://ddragon.leagueoflegends.com/cdn/7.10.1/img/champion/';
+    let ddragonGetImageUrl = 'https://ddragon.leagueoflegends.com/cdn/8.23.1/img/champion/';
 
     //Fetch champions
-    fetch("http://ddragon.leagueoflegends.com/cdn/6.24.1/data/en_US/champion.json")
+    fetch("http://ddragon.leagueoflegends.com/cdn/8.23.1/data/en_US/champion.json")
       .then(res => res.json())
       .then(
         (result) => {
