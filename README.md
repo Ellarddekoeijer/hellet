@@ -1,5 +1,5 @@
 # Hellet
-Streight up just me playing around with the Riot Api
+Straight up just me playing around with the Riot Api
 
 ---
 ## Getting started
