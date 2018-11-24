@@ -38,6 +38,17 @@
   border-radius: 10px;
 }
 
+.detailImage {
+  float: left;
+}
+
+.statList {
+  padding: 0;
+  text-align: left;
+  color: white;
+  list-style-type: none;
+}
+
 .championList {
   background-color: #3c3c3c;
   padding: 20px;

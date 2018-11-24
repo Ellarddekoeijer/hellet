@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import logo from './logo.svg';
 import './App.css';
 import apiKey from './api';
+import {championImage, allChampionsInfo} from './ddragon';
 import { BrowserRouter, Route, Router, Link, Switch } from 'react-router-dom';
 
 // Components
@@ -24,10 +25,10 @@ class App extends Component {
 
 
   fetchChampions = async () => {
-    let ddragonGetImageUrl = 'https://ddragon.leagueoflegends.com/cdn/8.23.1/img/champion/';
+    let ddragonGetImageUrl = championImage;
 
     //Fetch champions
-    fetch("http://ddragon.leagueoflegends.com/cdn/8.23.1/data/en_US/champion.json")
+    fetch(allChampionsInfo)
       .then(res => res.json())
       .then(
         (result) => {

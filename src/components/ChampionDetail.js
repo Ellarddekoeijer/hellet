@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import logo from '../logo.svg';
+import {championImage, championInfo} from '../ddragon';
 import '../App.css';
 import { BrowserRouter, Route, Router, Link, Switch } from 'react-router-dom';
 
@@ -14,7 +15,7 @@ class ChampionDetail extends Component {
   }
 
   fetchChampion = async (id) => {
-    fetch("http://ddragon.leagueoflegends.com/cdn/6.24.1/data/en_US/champion/" + id + ".json")
+    fetch(championInfo + id + ".json")
     .then(res => res.json())
     .then(
       (result) => {
@@ -59,12 +60,12 @@ class ChampionDetailDisplay extends Component {
             <div className="championDetail">
               <div className='row'>
                 <div className='col-3'>
-                  <img src={"https://ddragon.leagueoflegends.com/cdn/8.23.1/img/champion/" + this.props.champion.image.full} alt=""/>
+                  <img className="detailImage" src={championImage + this.props.champion.image.full} alt=""/>
                 </div>
               </div>
               <div className='row'>
                   <div className='col-6'>
-                    <ul>
+                    <ul className="statList">
                       <li>{this.props.champion.stats.hp}</li>
                       <li>{this.props.champion.stats.mp}</li>
                       <li>{this.props.champion.stats.armor}</li>
