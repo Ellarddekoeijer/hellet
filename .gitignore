@@ -21,3 +21,9 @@
 npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
+
+# Idea(For intellji projects)
+.idea/
+
+# Might want to leave it locked to keep the same version between different machines
+package-lock.json
