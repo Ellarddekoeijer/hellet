@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import logo from '../logo.svg';
-import {championImage, championInfo} from '../ddragon';
+import {leagueUrls} from '../libs/endpoints';
 import '../App.css';
 import { BrowserRouter, Route, Router, Link, Switch } from 'react-router-dom';
 
@@ -15,7 +15,7 @@ class ChampionDetail extends Component {
   }
 
   fetchChampion = async (id) => {
-    fetch(championInfo + id + ".json")
+    fetch(leagueUrls.championInfo + id + ".json")
     .then(res => res.json())
     .then(
       (result) => {
@@ -35,7 +35,7 @@ class ChampionDetail extends Component {
         console.log(error);
       }
     )
-  }
+  };
 
   render() {
     let element= "";
@@ -60,7 +60,7 @@ class ChampionDetailDisplay extends Component {
             <div className="championDetail">
               <div className='row'>
                 <div className='col-3'>
-                  <img className="detailImage" src={championImage + this.props.champion.image.full} alt=""/>
+                  <img className="detailImage" src={leagueUrls.championImage + this.props.champion.image.full} alt=""/>
                 </div>
               </div>
               <div className='row'>

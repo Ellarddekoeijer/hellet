@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
 import logo from './logo.svg';
 import './App.css';
-import apiKey from './api';
-import {championImage, allChampionsInfo} from './ddragon';
+import apiKey from './libs/api';
+import {leagueUrls} from './libs/endpoints';
 import { BrowserRouter, Route, Router, Link, Switch } from 'react-router-dom';
 
 // Components
@@ -25,10 +25,10 @@ class App extends Component {
 
 
   fetchChampions = async () => {
-    let ddragonGetImageUrl = championImage;
+    let ddragonGetImageUrl = leagueUrls.championImage;
 
     //Fetch champions
-    fetch(allChampionsInfo)
+    fetch(leagueUrls.allChampionsInfo)
       .then(res => res.json())
       .then(
         (result) => {
