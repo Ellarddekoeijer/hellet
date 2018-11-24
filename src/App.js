@@ -86,6 +86,7 @@ class App extends Component {
             } />
             <Route exact path="/champion/:id" render={ (props) =>
               <div className='App'>
+                <Header />
                 <ChampionDetail {...props} />
               </div>
             } />
