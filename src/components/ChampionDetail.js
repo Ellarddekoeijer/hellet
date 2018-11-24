@@ -39,7 +39,7 @@ class ChampionDetail extends Component {
   render() {
     let element= "";
     if (this.state.isLoaded) {
-      element = <ChampionDetailDisplay id={this.state.id} champion={this.state.champion.data} />
+      element = <ChampionDetailDisplay champion={this.state.champion.data[this.state.id]} />
     }
     return (
       <div>
@@ -51,9 +51,32 @@ class ChampionDetail extends Component {
 
 class ChampionDetailDisplay extends Component {
   render() {
-    console.log(this.props.champion.data);
+    console.log(this.props.champion.id);
     return (
-      <div>
+      <div className='container'>
+        <div className='row'>
+          <div className='col-12'>
+            <div className="championDetail">
+              <div className='row'>
+                <div className='col-3'>
+                  <img src={"https://ddragon.leagueoflegends.com/cdn/8.23.1/img/champion/" + this.props.champion.image.full} alt=""/>
+                </div>
+              </div>
+              <div className='row'>
+                  <div className='col-6'>
+                    <ul>
+                      <li>{this.props.champion.stats.hp}</li>
+                      <li>{this.props.champion.stats.mp}</li>
+                      <li>{this.props.champion.stats.armor}</li>
+                      <li>{this.props.champion.stats.spellblock}</li>
+                      <li>{this.props.champion.stats.attackdamage}</li>
+                      <li>{this.props.champion.stats.attackrange}</li>
+                    </ul>
+                  </div>
+                </div>
+            </div>
+          </div>
+        </div>
       </div>
     );
   }

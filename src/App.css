@@ -30,6 +30,14 @@
   color: #61dafb;
 }
 
+.championDetail {
+  margin: 5vh 0;
+  background-color: #3c3c3c;
+  padding: 20px;
+  border: 1px solid #232323;
+  border-radius: 10px;
+}
+
 .championList {
   background-color: #3c3c3c;
   padding: 20px;
