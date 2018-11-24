@@ -20,6 +20,14 @@
   color: white;
 }
 
+.nav-link {
+  color: #EFEFEF;
+  text-transform: uppercase;
+  letter-spacing: 3px;
+  font-family: arial;
+  font-weight: bold;
+}
+
 .championLink img {
   padding: 10px;
   width: 75px;

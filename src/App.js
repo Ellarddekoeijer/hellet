@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import logo from './logo.svg';
+import logo from './logo.pdf';
 import './App.css';
 import apiKey from './libs/api';
 import {leagueUrls} from './libs/endpoints';
@@ -7,6 +7,7 @@ import { BrowserRouter, Route, Router, Link, Switch } from 'react-router-dom';
 
 // Components
 import Homepage from './components/Homepage';
+import Header from './components/Header';
 import ChampionDetail from './components/ChampionDetail';
 
 
@@ -74,18 +75,22 @@ class App extends Component {
 
   render() {
     return (
-      <div className='App'>
+      
         <BrowserRouter>
           <Switch>
             <Route exact path="/" render={ (props) =>
-              <Homepage searchTerm={this.state.searchTerm} searchFunc={this.handleSearchChampion} champions={this.state.champions} />
+              <div className='App'>
+                <Header />
+                <Homepage searchTerm={this.state.searchTerm} searchFunc={this.handleSearchChampion} champions={this.state.champions} />
+              </div>
             } />
             <Route exact path="/champion/:id" render={ (props) =>
-              <ChampionDetail {...props} />
+              <div className='App'>
+                <ChampionDetail {...props} />
+              </div>
             } />
           </Switch>
         </BrowserRouter>
-      </div>
     );
   }
 }

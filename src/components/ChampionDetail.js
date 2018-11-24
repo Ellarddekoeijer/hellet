@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import logo from '../logo.svg';
+import logo from '../logo.pdf';
 import {leagueUrls} from '../libs/endpoints';
 import '../App.css';
 import { BrowserRouter, Route, Router, Link, Switch } from 'react-router-dom';

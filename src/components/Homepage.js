@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import logo from '../logo.svg';
+import logo from '../logo.pdf';
 import '../App.css';
 import ChampionList from './ChampionList';
 import SearchChampionForm from './SearchChampionForm';
