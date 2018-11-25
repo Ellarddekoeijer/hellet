@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import logo from '../logo.pdf';
+import logo from '../logo.png';
 import '../App.css';
 
 class SearchChampionForm extends Component {

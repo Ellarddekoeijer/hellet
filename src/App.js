@@ -41,12 +41,9 @@ class App extends Component {
 
           //Loop trough all champions and add their image url to the individual champion objects
           champions.map((champion) => {
-            //Special little statement for fiddlesticks because they broke his path
-            if (champion.id == 'FiddleSticks') {
-              avatarPath = ddragonGetImageUrl + 'Fiddlesticks.png'
-            } else {
-              avatarPath = ddragonGetImageUrl + champion.image.full;
-            }
+            
+            avatarPath = ddragonGetImageUrl + champion.image.full;
+
 
             champion.image.helletimage = avatarPath;
           });
