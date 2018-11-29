@@ -1,8 +1,10 @@
 import React, { Component } from 'react';
 import logo from './logo.svg';
 import './App.css';
-import apiKey from './libs/api';
+import riotApi from './libs/api';
+import championggApi from './libs/api';
 import {leagueUrls} from './libs/endpoints';
+import {getLatestVersion} from './libs/version';
 import { BrowserRouter, Route, Router, Link, Switch } from 'react-router-dom';
 
 // Components
@@ -17,7 +19,8 @@ class App extends Component {
     this.state = {
       championsLoaded: false,
       champions: [],
-      searchTerm: undefined
+      searchTerm: undefined,
+      ddragonVersion: getLatestVersion()
     }
 
     this.fetchChampions();
@@ -32,7 +35,6 @@ class App extends Component {
       .then(res => res.json())
       .then(
         (result) => {
-          console.log(result);
           //Get values for each champion and put them into an array
           let champions = Object.values(result.data);
           //handy path variable

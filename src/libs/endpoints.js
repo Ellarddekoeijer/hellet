@@ -1,13 +1,22 @@
-import {apiVersion} from '../libs/version';
+// import {getLatestVersion} from '../libs/version';
+import {getLatestVersion} from '../libs/version';
+import {championggApi} from '../libs/api';
 
-console.log(apiVersion.getLatestVersion(function(version){
-    console.log
-}));
+// console.log(getLatestVersion(function(version){
+//     console.log(version);
+// }));
+// 
+const version = "8.23.1";
 
 var leagueUrls = {
-    championImage: "https://ddragon.leagueoflegends.com/cdn/" + apiVersion.getLatestVersion() + "/img/champion/",
-    championInfo: "http://ddragon.leagueoflegends.com/cdn/" + apiVersion.getLatestVersion() + "/data/en_US/champion/",
-    allChampionsInfo: "http://ddragon.leagueoflegends.com/cdn/" + apiVersion.getLatestVersion() + "/data/en_US/champion.json"
+    championImage: "https://ddragon.leagueoflegends.com/cdn/" + version + "/img/champion/",
+    championInfo: "http://ddragon.leagueoflegends.com/cdn/" + version + "/data/en_US/champion/",
+    allChampionsInfo: "http://ddragon.leagueoflegends.com/cdn/" + version + "/data/en_US/champion.json"
 };
 
-export {leagueUrls};
+var championggUrls = {
+	championDetails: "http://api.champion.gg/v2/champions/",
+	championDataSet: "?champData=kda,damage,averageGames,totalHeal,killingSpree,minions,gold,positions,normalized,groupedWins,trinkets,runes,firstitems,summoners,skills,finalitems,masteries,maxMins,matchups&api_key=" + championggApi
+}
+
+export {leagueUrls, championggUrls};

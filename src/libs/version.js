@@ -1,15 +1,11 @@
-var apiVersion = {
+function getLatestVersion() {
+	fetch("https://ddragon.leagueoflegends.com/api/versions.json")
+		.then((response) => response.json())
+		.then((versions) => {
+			return versions[0];
+		})
+}
 
-    getLatestVersion : function (version) {
-        fetch("https://ddragon.leagueoflegends.com/api/versions.json")
-            .then((response) => response.json())
-            .then((versions) => {
-                version(versions[0]);
-            });
 
-    }
-};
 
-var leagueVersion = apiVersion.getLatestVersion();
-
-export {apiVersion, leagueVersion};
+export {getLatestVersion};
