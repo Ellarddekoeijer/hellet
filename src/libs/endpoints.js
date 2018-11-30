@@ -10,6 +10,7 @@ const version = "8.23.1";
 
 var leagueUrls = {
     championImage: "https://ddragon.leagueoflegends.com/cdn/" + version + "/img/champion/",
+    championFullImage: "http://ddragon.leagueoflegends.com/cdn/img/champion/splash/",
     championInfo: "http://ddragon.leagueoflegends.com/cdn/" + version + "/data/en_US/champion/",
     allChampionsInfo: "http://ddragon.leagueoflegends.com/cdn/" + version + "/data/en_US/champion.json"
 };

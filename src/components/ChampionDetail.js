@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import logo from '../logo.svg';
 import {XYPlot, XAxis, YAxis, HorizontalGridLines, LineSeries, VerticalBarSeries} from 'react-vis';
 import {leagueUrls, championggUrls} from '../libs/endpoints';
+import {positionIcons} from '../images/positionsIcons';
 import { BrowserRouter, Route, Router, Link, Switch } from 'react-router-dom';
 import '../App.css';
 
@@ -62,10 +63,35 @@ class ChampionDetail extends Component {
 
   render() {
     let element= "";
+
     if (this.state.isLoaded) {
-      console.log(this.state.championggData);
+      //Check what role the champion is, get the role icon
+      let roleImage = "";
+      switch(this.state.championggData._id.role) {
+          case "TOP":
+              roleImage = positionIcons.Top;
+              break;
+          case "MIDDLE":
+              roleImage = positionIcons.Mid;
+              break;
+          case "DUO_SUPPORT":
+              roleImage = positionIcons.Support;
+              break;
+          case "JUNGLE":
+              roleImage = positionIcons.Jungle;
+              break;
+          case "DUO_CARRY":
+              roleImage = positionIcons.ADC;
+              break;
+          default:
+              roleImage = positionIcons.Top;
+      }
+
       element = <ChampionDetailDisplay 
         champion={this.state.champion.data[this.state.championId]}
+        championGG={this.state.championggData}
+        fullImage={leagueUrls.championFullImage + this.state.championId + "_0.jpg"}
+        roleImage={roleImage}
         winRate={this.state.championggData.normalized.winRate}
         assists={this.state.championggData.normalized.assists}
         deaths={this.state.championggData.normalized.deaths}
@@ -82,37 +108,27 @@ class ChampionDetail extends Component {
 
 class ChampionDetailDisplay extends Component {
   render() {
-    const myData = [
-      {x: 1, y: this.props.assists},
-      {x: 2, y: this.props.deaths},
-      {x: 3, y: this.props.kills}
-    ]
-
+    console.log(this.props.championGG);
     return (
       <div className='container'>
         <div className='row'>
-          <div className='col-12'>
-            <div className="championDetail">
-              <div className='row'>
-                <div className='col-3'>
-                  <img className="detailImage" src={leagueUrls.championImage + this.props.champion.image.full} alt=""/>
-                </div>
-              </div>
-              <div className='row'>
-              <div className="col-6">
-              <XYPlot height={200} width={200}>
-                <VerticalBarSeries data={myData}/>
-              </XYPlot>
-                </div>
-                <div className='col-6'>
-                  <ul className="statList">
-                    <li>{this.props.champion.stats.hp}</li>
-                    <li>{this.props.champion.stats.mp}</li>
-                    <li>{this.props.champion.stats.armor}</li>
-                    <li>{this.props.champion.stats.spellblock}</li>
-                    <li>{this.props.champion.stats.attackdamage}</li>
-                    <li>{this.props.champion.stats.attackrange}</li>
-                  </ul>
+          <div className='col-9'>
+            <div className="championDetail" style={{backgroundImage: `url(${this.props.fullImage})`}}>
+              <div className="championDetailOverlay">
+                <div className='row'>
+                  <div className='col-12'>
+                    <img className="roleImage" src={this.props.roleImage} alt=""/>
+                    <h1 className="championTitle">{this.props.champion.name}</h1>
+                    <h3 className="championSubtitle">{this.props.champion.title}</h3>
+                  </div>
+                  <div>
+                    <p>sample</p>
+                    <p>sample</p>
+                    <p>sample</p>
+                    <p>sample</p>
+                    <p>sample</p>
+                    <p>sample</p>
+                  </div>
                 </div>
               </div>
             </div>

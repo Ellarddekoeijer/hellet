@@ -30,12 +30,34 @@
   color: #61dafb;
 }
 
+.roleImage {
+  margin: 0 20px 0 0 ;
+  float: left;
+  height: 60px;
+}
+
+.championTitle, .championSubtitle {
+  text-align: left;
+  color: #EFEFEF;
+}
+
+
 .championDetail {
   margin: 5vh 0;
-  background-color: #3c3c3c;
+  border-radius: 15px;
+  background-size: cover;
+  background-position: center;
+  -webkit-box-shadow: 10px 10px 13px 0px rgba(0,0,0,0.75);
+  -moz-box-shadow: 10px 10px 13px 0px rgba(0,0,0,0.75);
+  box-shadow: 10px 10px 13px 0px rgba(0,0,0,0.75);
+}
+
+.championDetailOverlay {
+  border-radius: 15px;
   padding: 20px;
-  border: 1px solid #232323;
-  border-radius: 10px;
+  height: 100%;
+  width: 100%;
+  background-color: rgba(0,0,0,0.1);
 }
 
 .detailImage {
