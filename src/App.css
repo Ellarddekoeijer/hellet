@@ -26,6 +26,57 @@
   margin: 0 auto;
 }
 
+.championAbilities {
+  border-radius: 15px;
+  background-color: #3c3c3c;
+  margin: 50px 0 0 0;
+  list-style-type: none;
+  float: left;
+  width: 100%;
+  padding: 20px;
+}
+
+.championAbilities li {
+  box-sizing: border-box;
+  height: 40px;
+  width: 100%;
+  float: left;
+}
+
+.championAbilities li img {
+  margin: 0 10px 0 0;
+  float: left;
+  height: 40px;
+}
+
+.championAbilities li h4 {
+  float: left;
+  display: inline-block;
+  line-height: 35px;
+  font-size: 1em;
+  text-align: left;
+  color: #EFEFEF;
+}
+
+.championAbilitiesLevelList {
+  padding: 0;
+  width: calc(100% - 50px);
+  height: 100%;
+  float: left;
+  list-style-type: none;
+}
+
+.championAbilitiesLevelList li {
+  width: calc(100% / 18);
+  height: 100%;
+  float: left;
+  border: 1px solid #2C2C2C;
+}
+
+.championAbilitiesLevelList li.leveled {
+  background-color: #EFEFEF;
+}
+
 .App-link {
   color: #61dafb;
 }
@@ -54,10 +105,10 @@
 
 .championDetailOverlay {
   border-radius: 15px;
-  padding: 20px;
+  padding: 40px;
   height: 100%;
   width: 100%;
-  background-color: rgba(0,0,0,0.1);
+  background-color: rgba(0,0,0,0.4);
 }
 
 .detailImage {

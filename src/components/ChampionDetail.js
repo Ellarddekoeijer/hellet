@@ -12,7 +12,9 @@ class ChampionDetail extends Component {
   
     this.state = {
       data: [],
-      championggData: {}
+      championggData: {},
+      championId: "",
+      championKey: ""
     }
 
     this.fetchChampion(match.match.params.id);
@@ -23,33 +25,26 @@ class ChampionDetail extends Component {
     .then(res => res.json())
     .then(
       (result) => {
+
+        //Set spell & passive images
+        // Passive
+        result.data[id].passive.image.helletUrl =  leagueUrls.passiveImage + result.data[id].passive.image.full;
+        // Q
+        result.data[id].spells[0].image.helletUrl =  leagueUrls.spellImage + result.data[id].spells[0].image.full;
+        // W
+        result.data[id].spells[1].image.helletUrl =  leagueUrls.spellImage + result.data[id].spells[1].image.full;
+        // E
+        result.data[id].spells[2].image.helletUrl =  leagueUrls.spellImage + result.data[id].spells[2].image.full;
+        // R
+        result.data[id].spells[3].image.helletUrl =  leagueUrls.spellImage + result.data[id].spells[3].image.full;
+
         this.setState({
           champion: result,
           championId: id,
           championKey: result.data[id].key
         });
 
-        //Fetch champion.gg data from specific champion
-        fetch(championggUrls.championDetails + this.state.championKey + championggUrls.championDataSet)
-          .then(res =>res.json())
-          .then(
-            (championgg) => {
-              this.setState({
-                isLoaded: true,
-                championggData: championgg[0]
-              });
-              
-            },
-            // Note: it's important to handle errors here
-            // instead of a catch() block so that we don't swallow
-            // exceptions from actual bugs in components.
-            (error) => {
-              this.setState({
-                isLoaded: true
-              });
-              console.log(error);
-            }
-          )
+        this.fetchChampionGGData();
 
       },
       // Note: it's important to handle errors here
@@ -60,6 +55,32 @@ class ChampionDetail extends Component {
       }
     )
   };
+
+  fetchChampionGGData = () => {
+    if (this.state.championKey != "") {
+      //Fetch champion.gg data from specific champion when a championKey is set within the state
+      fetch(championggUrls.championDetails + this.state.championKey + championggUrls.championDataSet)
+      .then(res =>res.json())
+      .then(
+        (championgg) => {
+          this.setState({
+            isLoaded: true,
+            championggData: championgg[0]
+          });
+          
+        },
+        // Note: it's important to handle errors here
+        // instead of a catch() block so that we don't swallow
+        // exceptions from actual bugs in components.
+        (error) => {
+          this.setState({
+            isLoaded: true
+          });
+          console.log(error);
+        }
+      )
+    }
+  }
 
   render() {
     let element= "";
@@ -109,6 +130,7 @@ class ChampionDetail extends Component {
 class ChampionDetailDisplay extends Component {
   render() {
     console.log(this.props.championGG);
+    console.log(this.props.champion);
     return (
       <div className='container'>
         <div className='row'>
@@ -121,13 +143,104 @@ class ChampionDetailDisplay extends Component {
                     <h1 className="championTitle">{this.props.champion.name}</h1>
                     <h3 className="championSubtitle">{this.props.champion.title}</h3>
                   </div>
-                  <div>
-                    <p>sample</p>
-                    <p>sample</p>
-                    <p>sample</p>
-                    <p>sample</p>
-                    <p>sample</p>
-                    <p>sample</p>
+                  <div className='col-12'>
+                    <ul className="championAbilities">
+                      <li>
+                        <img src={this.props.champion.passive.image.helletUrl} alt=""/>
+                      </li>
+                      <li>
+                        <img src={this.props.champion.spells[0].image.helletUrl} alt=""/>
+                        <ul className="championAbilitiesLevelList">
+                          <li className="leveled"></li>
+                          <li></li>
+                          <li></li>
+                          <li></li>
+                          <li></li>
+                          <li></li>
+                          <li></li>
+                          <li></li>
+                          <li></li>
+                          <li></li>
+                          <li></li>
+                          <li></li>
+                          <li></li>
+                          <li></li>
+                          <li></li>
+                          <li></li>
+                          <li></li>
+                          <li></li>
+                        </ul>
+                      </li>
+                      <li>
+                        <img src={this.props.champion.spells[1].image.helletUrl} alt=""/>
+                        <ul className="championAbilitiesLevelList">
+                          <li></li>
+                          <li></li>
+                          <li></li>
+                          <li></li>
+                          <li></li>
+                          <li></li>
+                          <li></li>
+                          <li></li>
+                          <li></li>
+                          <li></li>
+                          <li></li>
+                          <li></li>
+                          <li></li>
+                          <li></li>
+                          <li></li>
+                          <li></li>
+                          <li></li>
+                          <li></li>
+                        </ul>
+                      </li>
+                      <li>
+                        <img src={this.props.champion.spells[2].image.helletUrl} alt=""/>
+                        <ul className="championAbilitiesLevelList">
+                          <li></li>
+                          <li></li>
+                          <li></li>
+                          <li></li>
+                          <li></li>
+                          <li></li>
+                          <li></li>
+                          <li></li>
+                          <li></li>
+                          <li></li>
+                          <li></li>
+                          <li></li>
+                          <li></li>
+                          <li></li>
+                          <li></li>
+                          <li></li>
+                          <li></li>
+                          <li></li>
+                        </ul>
+                      </li>
+                      <li>
+                        <img src={this.props.champion.spells[3].image.helletUrl} alt=""/>
+                        <ul className="championAbilitiesLevelList">
+                          <li></li>
+                          <li></li>
+                          <li></li>
+                          <li></li>
+                          <li></li>
+                          <li></li>
+                          <li></li>
+                          <li></li>
+                          <li></li>
+                          <li></li>
+                          <li></li>
+                          <li></li>
+                          <li></li>
+                          <li></li>
+                          <li></li>
+                          <li></li>
+                          <li></li>
+                          <li></li>
+                        </ul>
+                      </li>
+                    </ul>
                   </div>
                 </div>
               </div>
