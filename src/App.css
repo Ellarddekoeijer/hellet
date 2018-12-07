@@ -1,4 +1,4 @@
-.App {
+.App {championAbilitiesLevelList
   text-align: center;
   background-color: #202020;
   min-height: 100vh;
@@ -135,6 +135,37 @@
 .championSearch input {
   float: left;
   border-radius: 5px;
+}
+
+td.level {
+  width: 50px;
+  height: 50px;
+  border: 1px solid black;
+}
+
+td.level img {
+  height: 100%;
+}
+
+.skillOrderTable {
+  width: 100%;
+}
+
+.skillOrderTable tr td {
+  background-color: #3333337d;
+}
+
+.skillOrder {
+  margin: 10vh 0 0 0;
+}
+
+td.leveled {
+  background-color: #E0E0E0 !important;
+}
+.skillOrderTable th {
+  width: 50px;
+  text-align: center;
+  color: #F1F1F1;
 }
 
 @keyframes App-logo-spin {

@@ -63,10 +63,12 @@ class ChampionDetail extends Component {
       .then(res =>res.json())
       .then(
         (championgg) => {
+          this.generateTableElements(championgg[0].hashes.skillorderhash.highestWinrate.hash);
           this.setState({
             isLoaded: true,
             championggData: championgg[0]
           });
+
           
         },
         // Note: it's important to handle errors here
@@ -81,6 +83,72 @@ class ChampionDetail extends Component {
       )
     }
   }
+    // Generates td elements for the skill order table
+    generateTableElements = (order) => {
+      //Set element to create table with
+      let tableElements = {
+        Q: [],
+        W: [],
+        E: [],
+        R: [],
+        counter: []
+      }
+
+      //Split the skill order string into an array
+      let orderArray = order.split('-');
+
+      //Element to push when a skill has been leveled
+      let leveled = (text) => <td className="leveled level">{text}</td>;
+
+      //Element to push when a skill has not be leveled
+      let td = <td className="level"></td>;
+
+      orderArray.forEach((level) => {
+        switch(level) {
+          case 'Q':
+            tableElements.Q.push(leveled('Q'));
+
+            //Add an empty td element to the rest of the skills
+            tableElements.W.push(td);
+            tableElements.E.push(td);
+            tableElements.R.push(td);
+            break;
+          case 'W':
+            tableElements.W.push(leveled('W'));
+
+            //Add an empty td element to the rest of the skills
+            tableElements.Q.push(td);
+            tableElements.E.push(td);
+            tableElements.R.push(td);
+            break;
+          case 'E':
+            tableElements.E.push(leveled('E'));
+
+            //Add an empty td element to the rest of the skills
+            tableElements.Q.push(td);
+            tableElements.W.push(td);
+            tableElements.R.push(td);
+            break;
+          case 'R':
+            tableElements.R.push(leveled('R'));
+
+            //Add an empty td element to the rest of the skills
+            tableElements.Q.push(td);
+            tableElements.W.push(td);
+            tableElements.E.push(td);
+            break;
+        }
+      });
+
+      //Display level counter
+      for (let i = 1; i < 19; i++) {
+        tableElements.counter.push(<th>{i}</th>);
+      }
+
+      this.setState({
+        skillOrderElements: tableElements
+      });
+    } 
 
   render() {
     let element= "";
@@ -107,7 +175,6 @@ class ChampionDetail extends Component {
           default:
               roleImage = positionIcons.Top;
       }
-
       element = <ChampionDetailDisplay 
         champion={this.state.champion.data[this.state.championId]}
         championGG={this.state.championggData}
@@ -117,6 +184,7 @@ class ChampionDetail extends Component {
         assists={this.state.championggData.normalized.assists}
         deaths={this.state.championggData.normalized.deaths}
         kills={this.state.championggData.normalized.kills}
+        skillOrder={this.state.skillOrderElements}
       />
     }
     return (
@@ -129,12 +197,10 @@ class ChampionDetail extends Component {
 
 class ChampionDetailDisplay extends Component {
   render() {
-    console.log(this.props.championGG);
-    console.log(this.props.champion);
     return (
       <div className='container'>
         <div className='row'>
-          <div className='col-9'>
+          <div className='col-12'>
             <div className="championDetail" style={{backgroundImage: `url(${this.props.fullImage})`}}>
               <div className="championDetailOverlay">
                 <div className='row'>
@@ -142,105 +208,35 @@ class ChampionDetailDisplay extends Component {
                     <img className="roleImage" src={this.props.roleImage} alt=""/>
                     <h1 className="championTitle">{this.props.champion.name}</h1>
                     <h3 className="championSubtitle">{this.props.champion.title}</h3>
-                  </div>
-                  <div className='col-12'>
-                    <ul className="championAbilities">
-                      <li>
-                        <img src={this.props.champion.passive.image.helletUrl} alt=""/>
-                      </li>
-                      <li>
-                        <img src={this.props.champion.spells[0].image.helletUrl} alt=""/>
-                        <ul className="championAbilitiesLevelList">
-                          <li className="leveled"></li>
-                          <li></li>
-                          <li></li>
-                          <li></li>
-                          <li></li>
-                          <li></li>
-                          <li></li>
-                          <li></li>
-                          <li></li>
-                          <li></li>
-                          <li></li>
-                          <li></li>
-                          <li></li>
-                          <li></li>
-                          <li></li>
-                          <li></li>
-                          <li></li>
-                          <li></li>
-                        </ul>
-                      </li>
-                      <li>
-                        <img src={this.props.champion.spells[1].image.helletUrl} alt=""/>
-                        <ul className="championAbilitiesLevelList">
-                          <li></li>
-                          <li></li>
-                          <li></li>
-                          <li></li>
-                          <li></li>
-                          <li></li>
-                          <li></li>
-                          <li></li>
-                          <li></li>
-                          <li></li>
-                          <li></li>
-                          <li></li>
-                          <li></li>
-                          <li></li>
-                          <li></li>
-                          <li></li>
-                          <li></li>
-                          <li></li>
-                        </ul>
-                      </li>
-                      <li>
-                        <img src={this.props.champion.spells[2].image.helletUrl} alt=""/>
-                        <ul className="championAbilitiesLevelList">
-                          <li></li>
-                          <li></li>
-                          <li></li>
-                          <li></li>
-                          <li></li>
-                          <li></li>
-                          <li></li>
-                          <li></li>
-                          <li></li>
-                          <li></li>
-                          <li></li>
-                          <li></li>
-                          <li></li>
-                          <li></li>
-                          <li></li>
-                          <li></li>
-                          <li></li>
-                          <li></li>
-                        </ul>
-                      </li>
-                      <li>
-                        <img src={this.props.champion.spells[3].image.helletUrl} alt=""/>
-                        <ul className="championAbilitiesLevelList">
-                          <li></li>
-                          <li></li>
-                          <li></li>
-                          <li></li>
-                          <li></li>
-                          <li></li>
-                          <li></li>
-                          <li></li>
-                          <li></li>
-                          <li></li>
-                          <li></li>
-                          <li></li>
-                          <li></li>
-                          <li></li>
-                          <li></li>
-                          <li></li>
-                          <li></li>
-                          <li></li>
-                        </ul>
-                      </li>
-                    </ul>
+                    <div className='col-9 skillOrder'>
+                    <h1 className="championTitle">Skill order</h1>
+                      <table className="skillOrderTable">
+                        <thead>
+                          <tr>
+                             <th></th>
+                            {this.props.skillOrder.counter}
+                          </tr>
+                        </thead>
+                        <tbody>
+                          <tr>
+                            <td className="level"><img src={this.props.champion.spells[0].image.helletUrl} alt=""/></td>
+                            {this.props.skillOrder.Q}
+                          </tr>
+                          <tr>
+                            <td className="level"><img src={this.props.champion.spells[1].image.helletUrl} alt=""/></td>
+                            {this.props.skillOrder.W}
+                          </tr>
+                          <tr>
+                            <td className="level"><img src={this.props.champion.spells[2].image.helletUrl} alt=""/></td>
+                            {this.props.skillOrder.E}
+                          </tr>
+                          <tr>
+                            <td className="level"><img src={this.props.champion.spells[3].image.helletUrl} alt=""/></td>
+                            {this.props.skillOrder.R}
+                          </tr>
+                        </tbody>
+                      </table>
+                    </div>
                   </div>
                 </div>
               </div>
